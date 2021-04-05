@@ -161,6 +161,7 @@
                 
             <li class="second-level"><a href="#windows">windowsを使う場合</a></li>
                 
+                <li class="third-level"><a href="#_2">インストーラーを使うのが簡単です</a></li>
             <li class="second-level"><a href="#mac">macを使う場合</a></li>
                 
                 <li class="third-level"><a href="#julia_1">Julia本体のインストール</a></li>
@@ -171,7 +172,20 @@
 <h1 id="julia">juliaの環境構築について</h1>
 <p>Julia本体のインストールと，JupyterLabのインストールについて説明します．</p>
 <h2 id="_1">情報教育端末を使う場合</h2>
+<p>未確認...</p>
 <h2 id="windows">windowsを使う場合</h2>
+<h4 id="_2">インストーラーを使うのが簡単です</h4>
+<ol>
+<li>Julia の webページにアクセスして，Download または Download v.1.6.0 （この数字はアクセスした日によって違うかもしれません） をクリックします．<br><img src="../img/julia1.png" alt="julia1" width=60%></li>
+<li>64-bit (installer) をクリックしてインストーラーをダウンロードし，ダウンロードしたファイルを実行します．<br><img src="../img/julia2.png" alt="julia2" width=60%></li>
+<li>あとは，順に進んでいけばよいですが，Select Additional Tasks では Add Julia to PATH にチェックを入れておくとよいでしょう．<br><img src="../img/julia3.png" alt="julia3" width=60%>
+   <img src="../img/julia4.png" alt="julia4" width=60%>
+   <img src="../img/julia5.png" alt="julia5" width=60%>
+   <img src="../img/julia6.png" alt="julia6" width=60%></li>
+<li>このような感じでインストールされているはずです．<br><img src="../img/julia7.png" alt="julia7" width=60%></li>
+<li>クリックすると...（1+1などを計算させてみるとよいでしょう）<br><img src="../img/julia8.png" alt="julia8" width=60%><br>
+   なお，cygwin や コマンドプロンプト でも julia (+エンターキー) とすれば，juliaが起動します．例えばcygwinの場合は次のような感じです．<br><img src="../img/julia9.png" alt="julia9" width=60%></li>
+</ol>
 <h2 id="mac">macを使う場合</h2>
 <h3 id="julia_1">Julia本体のインストール</h3>
 <h4 id="homebrew">homebrewなどのパッケージ管理システムを使う場合</h4>
@@ -180,7 +194,7 @@
 </code></pre>
 <p>とすればインストールできます．homebrew をインストールするには，<a href="https://brew.sh/index_ja">homebrewのwebページ</a> にアクセスし，「インストール」の下のおまじないのような一行をコピーし（ただし，左端の「$」は除く），macOSのターミナルにペーストしエンターキーを押してください．</p>
 <p>MacPorts などの他のパッケージ管理システムを利用している場合も，同様にインストールできるはずです（宮武は homebrew を使っているため未確認）．</p>
-<h4 id="_2">インストーラーを使う場合</h4>
+<h4 id="_3">インストーラーを使う場合</h4>
 <p>Julia を配布している <a href="https://julialang.org/downloads/">Download Julia</a> から，macOS 向けの最新の installer をダウンロードしましょう（<a href="https://julialang.org/downloads/#current_stable_release">Current stable release</a>から macOS の 64-bit をクリックすれば自動でダウンロードが始まります）．ダウンロードできたら，そのファイルを使って他のアプリケーション同様にインストールすれば完了です．</p>
 <p>ターミナルから</p>
 <pre><code class="language-bash">$ julia
