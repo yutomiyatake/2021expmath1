@@ -282,6 +282,23 @@ is
 int main(){
     int a = 5;
 
+    if (a%2==0) {
+        printf(&quot;%d is even. \n&quot;, a);
+  } else {
+        printf(&quot;%d is odd. \n&quot;, a);
+  }
+
+    return 0;
+}
+</code></pre>
+<p>まず最初の <code>int a = 5</code> は，まさに「a は 5」という宣言です．直前の <code>int</code> については事項で説明しますので，一旦無視しておいてください．</p>
+<p>さて，肝心の　<code>if ( )</code> の括弧の中身をみてみましょう．<code>a%2</code> は「aを2で割った余り」を意味します．そして，括弧の中は「aを2で割った余りが0」という条件になります（「何かが何かに等しい」という条件を表すときには多くの言語でイコールを2つ書きます）．これが条件が満たされていれば，<code>if</code> の直後の命令が実行され，満たされていなければ <code>else</code>の直後の命令が実行されます．いま，<code>a = 5</code> ですから，この条件は満たされていません，従って，<code>else</code> の直後の命令が実行され，<code>5 is odd.</code> と出力されるわけです．</p>
+<p>なお，<code>if</code> に関する中括弧 <code>{ }</code> を省略してもOKです（ただし，実行する行が一行の場合に限ります）．</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(){
+    int a = 5;
+
     if (a%2==0)
         printf(&quot;%d is even. \n&quot;, a);
     else 
@@ -290,8 +307,6 @@ int main(){
     return 0;
 }
 </code></pre>
-<p>まず最初の <code>int a = 5</code> は，まさに「a は 5」という宣言です．直前の <code>int</code> については事項で説明しますので，一旦無視しておいてください．</p>
-<p>さて，肝心の　<code>if ( )</code> の括弧の中身をみてみましょう．<code>a%2</code> は「aを2で割った余り」を意味します．そして，括弧の中は「aを2で割った余りが0」という条件になります（「何かが何かに等しい」という条件を表すときには多くの言語でイコールを2つ書きます）．これが条件が満たされていれば，<code>if</code> の直後の命令が実行され，満たされていなければ <code>else</code>の直後の命令が実行されます．いま，<code>a = 5</code> ですから，この条件は満たされていません，従って，<code>else</code> の直後の命令が実行され，<code>5 is odd.</code> と出力されるわけです．</p>
 <div class="bs-callout bs-callout-warning">
   <h4><i class="fas fa-exclamation-triangle"></i> 改行，インデント</h4>
   上のプログラムでは，
