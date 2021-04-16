@@ -182,82 +182,24 @@
 </code></pre>
 <p>これは，「条件 が満たされている限り 命令 を実行し続ける」というプログラムです．</p>
 <p>では，for文のサンプルプログラムをみてみましょう．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=for1.c"></script>
 
-int main()
-{
-  int i, n, x;
-  n = 10;
-  x = 0;
-  for (i=1; i&lt;=n; i++){
-    x = x + i;
-    // x += i;
-  }
-  printf(&quot;x=%d\n&quot;,x);
-  return 0;
-}
-</code></pre>
 <p>順番にみていきましょう．</p>
 <p>まず，<code>int i, n, x;</code> で，整数型の変数を3つ準備しています．少し下の for文 の中で使われている i についても型を宣言していることに注意してください．
 次の，<code>n = 10;</code> と <code>x = 0;</code> は n と x の値の初期化です．</p>
 <p>そして，for 文のところを見ていきましょう．<code>for (i=1; i&lt;=n; i++)</code> の括弧の中は，「i が 1 から n まで」という意味です．いま，直前で n に 10 を代入していますから，実際には「i が 1 から 10 まで」ということになります．なお，括弧の中のこの書き方はC言語特有です．例えば，来週から扱うJulia言語では <code>for i = 1:n</code> といった書き方になります．そして，<code>for (...)</code> に続く <code>{...}</code>のところに命令が 書かれています．すなわち，<code>x = x + i</code> が命令です．これをみて，「i は 0？」と思うかもしれませんが，これは方程式ではなく，「いまの x に i を足したものを新しく x の値とする」という意味です．このような書き方はほぼ全てのプログラミング言語で共通ですので，（特に数学科の学生にとっては）しばらくは違和感を覚えるかもしれませんが，慣れていってください．なお，<code>x += i</code> は <code>x = x + i</code> と同じです．</p>
 <p>今回のプログラムでは，命令がどのように実行されるかみてみましょう．まず，for文 が始まる時点で x = 0 です．i=1のとき，x + i は 1 ですから，命令 <code>x = x + i</code> が実行された結果，x の値は更新され，x=1 となります．次に，i=2 のとき，x + i は1 + 2 で 3 ですから，命令 <code>x = x + i</code> が実行された結果，x の値は更新され，x=3 となります．次に，i=3 のとき，x + i は3 + 3 で 6 ですから，命令 <code>x = x + i</code> が実行された結果，x の値は更新され，x=6 となります．もう分かりましたよね？以上の操作を i = n まで繰り返すわけですから，i = n のときの命令が実行された結果，x の値は 1からn までの整数の和になっているはずです．このプログラムでは n=10 ですから，x = 55 になっているはずです．for文 に続く<code>printf("x=%d\n",x);</code> は，x の値の出力ですから，このプログラムをコンパイルして実行すると．<code>x=55</code> という結果になります．</p>
 <p>では今度は while 文のサンプルをみてみましょう．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=while1.c"></script>
 
-int main()
-{
-  int a = 1;
-  int n = 0;
-
-  while (a &lt; 100){
-    n = n + a;
-    a = a + 1;
-    if (a == 10)
-      break;
-  }
-  printf(&quot;n=%d\n&quot;,n);
-  return 0;
-}
-</code></pre>
 <p>while文 の中をみてみましょう．まず最初は，a = 1 ですから，<code>n = n + a</code> と <code>a = a + 1</code> がそれぞれ実行され，n = 1, a = 2 となります．その直後の if文 は，もしa = 10 ならば while文 を抜け出すという命令です．いま，a = 2 ですから該当しません．そこでもう一度 while 文 の先頭に戻ります．a = 2 ですから a &lt; 100 という条件は満たしていますので，さきほどと同様に，<code>n = n + a</code> と <code>a = a + 1</code> がそれぞれ実行され，n = 3, a = 3 となります．この操作を a = 10 になるまで繰り返すわけです．従って，while 文 を抜け出すときには，n は 1 から 9 までの整数の和になっているはずです．このプログラムをコンパイルして実行すると．<code>n=45</code> という結果になります．</p>
 <h2 id="_1">関数</h2>
 <p>これまでみてきたプログラムはいずれも数行程度の簡単なものでしたが，一つのプログラムの中で何度も同じような計算をするときに，一から for文 や while文 を使って書くのは大変ですし，バグの原因にもなります（うっかりミスが増えます）．例えば，1 から n までの自然数の総和を計算するときには，<code>sum(n)</code> という感じで書くことができれば，とても楽になりそうです．例えば，上記のfor文のプログラムを次のように書くことができれば，かなり可読性が高くなりそうです．言い換えれば，他人が読んでも，あるいは書いた本人が一ヶ月後に読んでも，どんなプログラムかすぐに分かりますよね．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=sum1.c"></script>
 
-int main()
-{
-  int i, n, x;
-  n = 10;
-  x = sum(n); // 1 から n までの総和
-
-  printf(&quot;x=%d\n&quot;,x);
-  return 0;
-}
-</code></pre>
 <p>ただし，これだけでは <code>sum</code> が定義されていないので，その定義も書く必要があります．その定義も含めたプログラムは次のようになります．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=sum2.c"></script>
 
-int sum(int n)
-{
-  int i, x;
-  x = 0;
-  for (i=1; i&lt;=n; i++){
-    x = x + i;
-  }
-  return x;
-}
-
-int main()
-{
-  int n, x;
-  n = 10;
-  x = sum(n); // 1 から n までの総和
-
-  printf(&quot;x=%d\n&quot;,x);
-  return 0;
-}
-</code></pre>
 <p>では，<code>int sum(int n){...}</code> の中をみていきましょう．まず，
 <span class="text-danger">int</span> 
 <span class="text-primary">sum</span>
@@ -269,43 +211,13 @@ int main()
 ここで一つ注意です．<code>int sum(int n){...}</code> では戻り値は int型 といっています．そして，<code>{...}</code> の中で，x の型は int型 と宣言しています．この両者が一致していないと，コンパイルが通りません．</p>
 <h2 id="_2">数学関数</h2>
 <p>三角関数といった標準的な数学関数は，<code>#include &lt;math.h&gt;</code> を冒頭で宣言することで利用できます．一例をみてみましょう．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;math.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=math_func.c"></script>
 
-int main()
-{
-  double x = 1.0;
-  double y;
-
-  y = sin(x);
-  printf(&quot;sin(x)=%f\n&quot;,y);
-  return 0;
-}
-</code></pre>
 <h2 id="_3">再帰関数</h2>
 <p><strong>再帰関数</strong> とは「関数の中で自分自身を呼び出す関数」のことです．例えば，<script type="math/tex">f(n) = n!</script> のように階乗を計算する関数を定義したいとき，もちろん for文 や while文 を使って定義することもできますが，<script type="math/tex">f(n) = n \times f(n-1)</script>, <script type="math/tex">f(0) = 1</script> のように定義することもできます．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=factorial.c"></script>
 
-int fac(int n)
-{
-  if (n==0){
-    return 1;
-  }else{
-    return n * fac(n-1);
-  }
-}
-
-int main()
-{
-  int n, x;
-  n = 10;
-  x = fac(n); // n の階乗
-
-  printf(&quot;%d!=%d\n&quot;,n,x);
-  return 0;
-}
-</code></pre>
-<p>再帰関数は直感的な定義をそのままプログラムにすることができますが，場合によっては，次のような問題があることに注意する必要があります．</p>
+<p>再帰関数は直感的な定義をそのままプログラムにすることができますが，場合によっては次のような問題があることに注意する必要があります．</p>
 <ul>
 <li>関数を呼び出す回数が指数的に増えて，計算量が膨大になることがある．</li>
 <li>メモリの使用量が増える．</li>
@@ -314,32 +226,8 @@ int main()
   <h4>課題</h4>
     フィボナッチ数列を求める/出力するプログラムを2通り（for文 を使うものと 再帰関数 を使うもの）作成してみよう．
 </div>
-
-<p>すなわち，以下のプログラムの， <code>{...}</code> の部分を埋めましょう．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int fibonacci_for(int n) // Fobonacci数列の定義（for文）
-{
-    ...
-}
-
-int fibonacci_rec(int n) // Fobonacci数列の定義（再帰関数）
-{
-    ...
-}
-
-int main()
-{
-  int n, x, y;
-  n = 10;
-  x = fibonacci_for(n); // fibonacci数列の第n項
-  y = fibonacci_rec(n); // fibonacci数列の第n項
-
-  printf(&quot;fibonacci_for(%d)=%d\n&quot;,n,x);
-  printf(&quot;fibonacci_rec(%d)=%d\n&quot;,n,y);
-  return 0;
-}
-</code></pre></div>
+<p>すなわち，以下のプログラムの <code>/* 埋める */</code> の部分を埋めましょう（埋めたら <code>/* */</code> は消してください）．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=fibonacci.c"></script></div>
         
         
     </div>

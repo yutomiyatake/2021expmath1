@@ -178,15 +178,8 @@
 <h2 id="_1">ハローワールド！（まずはここから）</h2>
 <p>新しくプログラミング言語を習うときには，多くの場合，文字列の出力の仕方から学びます．「Hello World!」と出力させることが多いので，ハローワールドと呼ばれることもあります．
 では，そのプログラムをみてみましょう．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=hello1.c"></script>
 
-int main()
-{
-    printf(&quot;Hello World!\n&quot;);
-    // printf(&quot;Second Line?\n&quot;);
-    return 0;
-}
-</code></pre>
 <p>3行目の <code>int main()</code> から説明しましょう．これはプログラムはここからはじまるという宣言です．そして，4行目の <code>{</code> から8行目の <code>}</code> までがプログラムのひとかたまりです．</p>
 <p>5行目の <code>printf(" ")</code> は，ダブルクオーテーション<code>" "</code>で囲まれた部分を出力するという命令（関数）です（関数については後述します）．そして <code>\n</code> は出力の後に改行をせよという命令です．これはあってもなくても一見して出力は変わりませんが，次の行よっては違いがみえてきます．</p>
 <p>6行目の先頭の <code>//</code> はその行はコメントであり，プログラムを実行する際には無視されます（プログラミング言語によって，<code>#</code> だったり <code>%</code> だったりします）．違いをみてみるために，<code>//</code> を外して実行してみましょう．5行目に <code>\n</code> を書いている場合と書いていない場合で出力が異なるはずです．</p>
@@ -194,14 +187,8 @@ int main()
 <p>なお，7行目の <code>return 0</code> はプログラムが正常に終了したことをOSに伝えるものです．無くても動きます．但し，<code>return 1</code> などとすると，別の指示を連続して実行できなくなったりします．ひとまず，「おまじない」と思っておいて問題ありません．</p>
 <h2 id="_2">書式</h2>
 <p>次のプログラムです．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=format.c"></script>
 
-int main()
-{
-    printf(&quot;%d/%d is %d. \n&quot;, 3, 2, 3/2);
-    return 0;
-}
-</code></pre>
 <p>出力は</p>
 <pre><code class="language-bash">3/2 is 1.
 </code></pre>
@@ -277,36 +264,13 @@ is
 </code></pre>
 <p><code>if</code> だけの場合，<code>else if</code> が複数ある場合，<code>else</code> が無い場合など様々なバリエーションがあります．</p>
 <p>C言語の一例をみてみましょう．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=if1.c"></script>
 
-int main(){
-    int a = 5;
-
-    if (a%2==0) {
-        printf(&quot;%d is even. \n&quot;, a);
-  } else {
-        printf(&quot;%d is odd. \n&quot;, a);
-  }
-
-    return 0;
-}
-</code></pre>
 <p>まず最初の <code>int a = 5</code> は，まさに「a は 5」という宣言です．直前の <code>int</code> については事項で説明しますので，一旦無視しておいてください．</p>
 <p>さて，肝心の　<code>if ( )</code> の括弧の中身をみてみましょう．<code>a%2</code> は「aを2で割った余り」を意味します．そして，括弧の中は「aを2で割った余りが0」という条件になります（「何かが何かに等しい」という条件を表すときには多くの言語でイコールを2つ書きます）．これが条件が満たされていれば，<code>if</code> の直後の命令が実行され，満たされていなければ <code>else</code>の直後の命令が実行されます．いま，<code>a = 5</code> ですから，この条件は満たされていません，従って，<code>else</code> の直後の命令が実行され，<code>5 is odd.</code> と出力されるわけです．</p>
 <p>なお，<code>if</code> に関する中括弧 <code>{ }</code> を省略してもOKです（ただし，実行する行が一行の場合に限ります）．</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=if2.c"></script>
 
-int main(){
-    int a = 5;
-
-    if (a%2==0)
-        printf(&quot;%d is even. \n&quot;, a);
-    else 
-        printf(&quot;%d is odd. \n&quot;, a);
-
-    return 0;
-}
-</code></pre>
 <div class="bs-callout bs-callout-warning">
   <h4><i class="fas fa-exclamation-triangle"></i> 改行，インデント</h4>
   上のプログラムでは，
