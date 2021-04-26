@@ -190,8 +190,9 @@
 <script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=format.c"></script>
 
 <p>出力は</p>
-<pre><code class="language-bash">3/2 is 1.
+<pre><code class="bash">3/2 is 1.
 </code></pre>
+
 <p>となるはずです．はじめてこのようなプログラムをみると，<code>printf</code> の中の <code>%d</code> にぎょっとすると思います．これについて説明しましょう．</p>
 <p>対応する部分を色分けして表示してみると次のようになります．</p>
 <p>printf("
@@ -242,6 +243,7 @@ is
     </code></pre>
     となるようにプログラムを修正してみましょう．
 </div>
+
 <p>​     </p>
 <div class="bs-callout bs-callout-default">
   <h4><i class="fas fa-exclamation-triangle"></i>注意</h4>
@@ -255,13 +257,14 @@ is
 <p>プログラムを書く時，場合分けをしてコンピュータに処理をさせたいことがよくあります．
 こういうときに用いるのが <strong>条件分岐</strong>，通称 <strong>if 文</strong> です．</p>
 <p>プログラム言語にも依りますが，基本的には次のような構造になります．</p>
-<pre><code class="language-bash">if (条件1)
+<pre><code class="bash">if (条件1)
     命令1 （←条件1が満たされていれば，命令1を実行）
     elseif (条件2)
         命令2 （←条件1が満たされておらず，条件2が満たされていれば，命令2を実行）
     else 
         命令3
 </code></pre>
+
 <p><code>if</code> だけの場合，<code>else if</code> が複数ある場合，<code>else</code> が無い場合など様々なバリエーションがあります．</p>
 <p>C言語の一例をみてみましょう．</p>
 <script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=if1.c"></script>
