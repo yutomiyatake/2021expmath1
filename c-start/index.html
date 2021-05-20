@@ -130,6 +130,12 @@
 </li>
 
                         
+                            
+<li >
+    <a href="../lecture5/">関数と配列の諸注意</a>
+</li>
+
+                        
                         </ul>
                     </li>
                 
@@ -182,17 +188,21 @@
 <p>サイバーメディアセンターのウェブページに<a href="https://www.cmc.osaka-u.ac.jp/edu/document/byod.pdf">利用方法の説明</a>が書かれています．「キャンパスクラウドエージェント」と「VMWare Horizon View Client」のインストール・利用方法が説明されていますが，必須なのは後者です（項目2, 4）．キャンパスクラウドエージェントを（エラーなどで）インストールできなくても問題ありません．</p>
 <p>なお，Desktopに置かれたファイルはログオフ時に消去されるため，教育用計算機を利用する場合，プログラムはDesktopのDocumentsというフォルダに置いて作業すると良いでしょう．
 例えばDocumentsの中にExpMath1というフォルダを作り，その中にa1-1.cを置いたとき，cygwinでのフォルダの移動操作は次のとおりです．</p>
-<pre><code class="language-bash">$ cd Z:ExpMath1/
+<pre><code class="bash">$ cd Z:ExpMath1/
 </code></pre>
+
 <p>さらにフォルダを細かく整理している場合，例えばExpMath1の中にa1というフォルダがある場合は，</p>
-<pre><code class="language-bash">$ cd a1
+<pre><code class="bash">$ cd a1
 </code></pre>
+
 <p>とします．フォルダの中身を確認する場合は</p>
-<pre><code class="language-bash">$ ls
+<pre><code class="bash">$ ls
 </code></pre>
+
 <p>一つ上の階層に戻りたいときは</p>
-<pre><code class="language-bash">$ cd ..
+<pre><code class="bash">$ cd ..
 </code></pre>
+
 <p>とします．</p>
 <p>ただし，この利用方法の場合</p>
 <ul>
@@ -203,13 +213,15 @@
 <p>といった理由から，自分のパソコンに環境構築することを推奨します．</p>
 <h2 id="windows">windowsを使う場合</h2>
 <p>大学の PC と同じような環境を整えたい場合，例えば <a href="https://www.cygwin.com/">Cygwin</a> をインストールします（Cygwin のインストールについては <a href="../cygwin">別ページ</a> で説明します）．その際，gcc というパッケージを忘れずにインストールしてください．インストール後，Cygwin を立ち上げて </p>
-<pre><code class="language-bash">$ gcc -v
+<pre><code class="bash">$ gcc -v
 </code></pre>
+
 <p>としてエラーがでなければOKです．</p>
 <h2 id="mac">macを使う場合</h2>
 <p>App Store から Xcode をインストールしてください．インストール後，ターミナルを立ち上げて </p>
-<pre><code class="language-bash">$ gcc -v
+<pre><code class="bash">$ gcc -v
 </code></pre>
+
 <p>としてエラーがでなければOKです．homebrewなどのパッケージ管理システムを利用してgccをインストールすることもできます．</p>
 <h2 id="hello-world">Hello World!をコンパイル/実行してみよう！</h2>
 <p>大学のアカウント and/or 個人のPCに「ExpMath1」といった名前のフォルダを作成します．このとき，以下の点に注意してください．</p>
@@ -234,38 +246,46 @@
 <h3 id="windows_1">windowsの場合</h3>
 <p>仮に，hello.c が Documents の ExpMath1 というフォルダの中にあるとします（教育用計算機の場合）．</p>
 <p><strong>Cygwinを起動し，cdコマンドで作業ディレクトリを移動</strong></p>
-<pre><code class="language-bash">$ cd Z:ExpMath1/
+<pre><code class="bash">$ cd Z:ExpMath1/
 </code></pre>
+
 <p><strong>gccコマンドで，hello.cをコンパイル</strong></p>
-<pre><code class="language-bash">$ gcc hello.c
+<pre><code class="bash">$ gcc hello.c
 </code></pre>
+
 <p>コンパイルが成功すると，実行ファイル「a.exe」が作成されるので，lsコマンドで確認してください．</p>
-<pre><code class="language-bash">$ ls
+<pre><code class="bash">$ ls
 a.exe hello.c
 </code></pre>
+
 <p>このように２つのファイルが表示されればOKです（同じフォルダに他のファイルがあれば，それらも全て表示されます）．</p>
 <p><strong>プログラムを実行</strong></p>
-<pre><code class="language-bash">$ ./a
+<pre><code class="bash">$ ./a
 Hello World!
 </code></pre>
+
 <p>「Hello World!」が表示されれば成功です．</p>
 <h3 id="maclinux">macの場合（Linuxの場合もほぼ同様）</h3>
 <p>仮に，hello.c が Desktop の ExpMath1 というフォルダの中にあるとします．</p>
 <p><strong>ターミナルを起動し，cdコマンドで作業ディレクトリを異動</strong></p>
-<pre><code class="language-bash">$ cd ~/Desktop/ExpMath1
+<pre><code class="bash">$ cd ~/Desktop/ExpMath1
 </code></pre>
+
 <p><strong>gccコマンドで，hello.cをコンパイル</strong></p>
-<pre><code class="language-bash">$ gcc hello.c
+<pre><code class="bash">$ gcc hello.c
 </code></pre>
+
 <p>コンパイルが成功すると，実行ファイル「a.out」が作成されます．lsコマンドで確認してみると</p>
-<pre><code class="language-bash">$ ls
+<pre><code class="bash">$ ls
 a.out hello.c
 </code></pre>
+
 <p>と二つのファイルが表示されるはずです（同じフォルダに他のファイルがあれば，それらも全て表示されます）．生成されるファイルが windows の場合と異なることに注意してください．</p>
 <p><strong>プログラムを実行（windows の場合と異なります）</strong></p>
-<pre><code class="language-bash">$ ./a.out
+<pre><code class="bash">$ ./a.out
 Hello World!
 </code></pre>
+
 <p>「Hello World!」が表示されれば成功です．</p></div>
         
         
