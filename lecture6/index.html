@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
-    <title>C言語 - 実験数学1</title>
+    <title>Gram&ndash;Schmidt の正規直交化法 - 実験数学1</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -81,13 +81,13 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">環境構築 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
-<li class="active">
-    <a href="./">C言語</a>
+<li >
+    <a href="../c-start/">C言語</a>
 </li>
 
                         
@@ -154,16 +154,6 @@
                             <i class="fas fa-search"></i> Search
                         </a>
                     </li>
-                    <li >
-                        <a rel="prev" href="../programming/">
-                            <i class="fas fa-arrow-left"></i> Previous
-                        </a>
-                    </li>
-                    <li >
-                        <a rel="next" href="../julia-start/">
-                            Next <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </li>
             </ul>
         </div>
     </div>
@@ -174,125 +164,43 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#c">C言語の環境構築について</a></li>
-            <li class="second-level"><a href="#_1">情報教育端末を使う場合</a></li>
-                
-            <li class="second-level"><a href="#windows">windowsを使う場合</a></li>
-                
-            <li class="second-level"><a href="#mac">macを使う場合</a></li>
-                
-            <li class="second-level"><a href="#hello-world">Hello World!をコンパイル/実行してみよう！</a></li>
-                
-                <li class="third-level"><a href="#windows_1">windowsの場合</a></li>
-                <li class="third-level"><a href="#maclinux">macの場合（Linuxの場合もほぼ同様）</a></li>
+        <li class="first-level active"><a href="#gramschmidt">Gram&ndash;Schmidt の正規直交化法</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="c">C言語の環境構築について</h1>
-<h2 id="_1">情報教育端末を使う場合</h2>
-<p>サイバーメディアセンターのウェブページに<a href="https://www.cmc.osaka-u.ac.jp/edu/document/byod.pdf">利用方法の説明</a>が書かれています．「キャンパスクラウドエージェント」と「VMWare Horizon View Client」のインストール・利用方法が説明されていますが，必須なのは後者です（項目2, 4）．キャンパスクラウドエージェントを（エラーなどで）インストールできなくても問題ありません．</p>
-<p>なお，Desktopに置かれたファイルはログオフ時に消去されるため，教育用計算機を利用する場合，プログラムはDesktopのDocumentsというフォルダに置いて作業すると良いでしょう．
-例えばDocumentsの中にExpMath1というフォルダを作り，その中にa1-1.cを置いたとき，cygwinでのフォルダの移動操作は次のとおりです．</p>
-<pre><code class="bash">$ cd Z:ExpMath1/
+<h1 id="gramschmidt">Gram&ndash;Schmidt の正規直交化法</h1>
+<p>一年生の線形代数で学習した<strong>Gram&ndash;Schmidt (GS) の正規直交化法</strong>のプログララムを書いていきましょう．</p>
+<p>GS の正規直交化法とは，内積の定義されたベクトル空間 \(V\) において，ベクトルの集合 \( \{a_1,a_2,\dots,a_n \} \) が与えられたとき，これらの貼る部分空間の正規直交基底を具体的に構成する手続きです．この講義では，簡単のため \(V =\mathbb{R}^m \) とし，その内積は \(a,b\in\mathbb{R}^m \) に対して \( (a,b) := a^\top b\) であるとします（\(a^\top\) は \(a\) の転置を表します：\({}^t a\) と同じ意味です）．基本的なアルゴリズムは次の通りです（プログラムを書くことを意識し，\(=\) は右辺で左辺の変数を定義する（あるいは再定義する）という意味です）</p>
+<p>&nbsp; &nbsp; \( q_1 = a_1\) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_1 = \frac{q_1}{\|q_1\|}\) <br></p>
+<p>&nbsp; &nbsp; \( q_2= a_2 - (q_1,a_2)q_1\) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_2= \frac{q_2}{\|q_2\|}\) <br></p>
+<p>&nbsp; &nbsp; \( q_3= a_3 - (q_1,a_3)q_1 - (q_2,a_3)q_2\) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_3= \frac{q_3}{\|q_3\|}\) <br></p>
+<p>&nbsp; &nbsp; \(\vdots\) <br></p>
+<p>&nbsp; &nbsp; \( \displaystyle q_n= a_n - \sum_{j=1}^{n-1} (q_j,a_n)q_j \) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_n = \frac{q_n}{\|q_n\|}\) </p>
+<p>以上を擬似コード的に書けば次のようになるでしょう．</p>
+<pre><code class="bash">for i = 1:n
+    q_i = a_i
+    for j = 1:i-1
+        q_i -= (q_j,a_i) * q_j
+    end
+    q_i = q_i / norm(q_i)
+end 
 </code></pre>
 
-<p>さらにフォルダを細かく整理している場合，例えばExpMath1の中にa1というフォルダがある場合は，</p>
-<pre><code class="bash">$ cd a1
-</code></pre>
+<p>あとは，Juliaの文法に沿って，ベクトルの集合を入力として受け取り，ベクトルの集合を出力する関数を定義すればよいわけです．しかし，ここでいくつか注意すべきことがあります．</p>
+<p>まず，内積やノルムはどうすればよいのでしょうか？実は，<a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/"><strong>LinearAlgebra</strong></a>というパッケージには，内積やノルムを計算する関数が既に用意されています．内積は，<code>dot</code> で計算でき，ノルムは <code>norm</code> で計算できます．<a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.norm">ノルムの項</a>を読むと分かるように，ユークリッドノルム以外のノルムにも対応しています．</p>
+<p>ではこれで準備万端かというと，実はまだ考えなければならないことがあります．入力したベクトルの列が線形従属だとすると何が起きるでしょうか？そのような場合，どこかの <code>i</code> で <code>q_i</code> が零ベクトルとなってしまい，このときノルムは \(0\) ですから <strong>零割り</strong> が発生してしまいます．このような場合の対応策はいくつか考えられますが（GSの正規直交化法を使って「何をしたいのか」に強く依存します），少なくとも 「<code>q_i</code> が零ベクトルかどうかの判定」は必要そうです．どのように判定すればよいでしょうか？ベクトルの全ての成分が零かどうかを判定してもよいですが，（零ベクトルでなければ）その後すぐに正規化することを考えると，<code>norm(q_i)</code> が 0 かどうか判定すればよさそうです．では，<code>if norm(q_i) == 0</code> のような条件分岐を書けばよいのでしょうか？実は，このような条件分岐は「数学としては正しい」ですが，コンピュータで計算する際には丸め誤差が避けられないことを踏まえると（数学的には 0 でも，実際の計算では丸め誤差分のズレが生じます），倍精度で計算する場合には例えば <code>tol = 1e-10</code> のように閾値を設定して，<code>if norm(q_i) &lt; tol</code> のように条件分岐を書けばよいということになります（<code>1e-10</code> は \( 10^{-10}\) のことです ）．</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    サンプルファイルをダウンロードし，「ここを書く」の部分を埋めて，GSの正規直交化の関数を完成させましょう．また，これができれば，正規直交化が実現できていることを確認するにはどうすればよいか考えてみてください．<br>
+      CLEで提出する際は，「ここを書く」の部分のコピーをテキストとしてペーストし，さらに「ipynb ファイル」（名前は，GramSchmidt_miyatake.ipynb のように自分の名前を入れてください；そうでないと，私のダウンロードフォルダに同じ名前のファイルが大量生成されてしまいます）を添付してください．
+</div>
 
-<p>とします．フォルダの中身を確認する場合は</p>
-<pre><code class="bash">$ ls
-</code></pre>
-
-<p>一つ上の階層に戻りたいときは</p>
-<pre><code class="bash">$ cd ..
-</code></pre>
-
-<p>とします．</p>
-<p>ただし，この利用方法の場合</p>
-<ul>
-<li>接続が必ずしも安定しないかもしれない（また一回の利用時間に制限があります）</li>
-<li>使えるエディタが限定される（メモ帳よりはNotepad++がおすすめです）</li>
-<li>Juliaで使えないパッケージがある</li>
-</ul>
-<p>といった理由から，自分のパソコンに環境構築することを推奨します．</p>
-<h2 id="windows">windowsを使う場合</h2>
-<p>大学の PC と同じような環境を整えたい場合，例えば <a href="https://www.cygwin.com/">Cygwin</a> をインストールします（Cygwin のインストールについては <a href="../cygwin">別ページ</a> で説明します）．その際，gcc というパッケージを忘れずにインストールしてください．インストール後，Cygwin を立ち上げて </p>
-<pre><code class="bash">$ gcc -v
-</code></pre>
-
-<p>としてエラーがでなければOKです．</p>
-<h2 id="mac">macを使う場合</h2>
-<p>App Store から Xcode をインストールしてください．インストール後，ターミナルを立ち上げて </p>
-<pre><code class="bash">$ gcc -v
-</code></pre>
-
-<p>としてエラーがでなければOKです．homebrewなどのパッケージ管理システムを利用してgccをインストールすることもできます．</p>
-<h2 id="hello-world">Hello World!をコンパイル/実行してみよう！</h2>
-<p>大学のアカウント and/or 個人のPCに「ExpMath1」といった名前のフォルダを作成します．このとき，以下の点に注意してください．</p>
-<ul>
-<li>Dropboxなどで同期させておくと便利</li>
-<li>フォルダ名やファイル名にはなるべく日本語は避ける</li>
-</ul>
-<p>次に，適当なエディタをダウンロードします．エディタについても以下の点に注意してください．</p>
-<ul>
-<li>「メモ帳」は色々と不便</li>
-<li>初心者であれば「Sublime Text」や「Atom」などがおすすめ</li>
-<li>特に最近は「Visual Studio Code」が人気のようです</li>
-<li>色々試してみながら，使いやすいものを見つけていけばよい</li>
-<li>プログラミング等にあまり慣れていない場合，emacsやviを使うのはややハードルが高いかもしれません</li>
-</ul>
-<p>ともかく，好きなエディタを立ち上げて，以下のプログラムを書き，適当な名前（例えば「hello.c」）をつけて保存します．</p>
-<p>注意：拡張子は「txt」などではなく「c」とすること</p>
-<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=hello.c"></script>
-
-<p>右下の "view raw" というボタンを右クリックすれば，このファイルをダウンロードすることができます．</p>
-<p>ここまでは，windows でも mac でも Linux でも同じです．ここから，windows と mac（やLinux）で少し操作が異なります．</p>
-<h3 id="windows_1">windowsの場合</h3>
-<p>仮に，hello.c が Documents の ExpMath1 というフォルダの中にあるとします（教育用計算機の場合）．</p>
-<p><strong>Cygwinを起動し，cdコマンドで作業ディレクトリを移動</strong></p>
-<pre><code class="bash">$ cd Z:ExpMath1/
-</code></pre>
-
-<p><strong>gccコマンドで，hello.cをコンパイル</strong></p>
-<pre><code class="bash">$ gcc hello.c
-</code></pre>
-
-<p>コンパイルが成功すると，実行ファイル「a.exe」が作成されるので，lsコマンドで確認してください．</p>
-<pre><code class="bash">$ ls
-a.exe hello.c
-</code></pre>
-
-<p>このように２つのファイルが表示されればOKです（同じフォルダに他のファイルがあれば，それらも全て表示されます）．</p>
-<p><strong>プログラムを実行</strong></p>
-<pre><code class="bash">$ ./a
-Hello World!
-</code></pre>
-
-<p>「Hello World!」が表示されれば成功です．</p>
-<h3 id="maclinux">macの場合（Linuxの場合もほぼ同様）</h3>
-<p>仮に，hello.c が Desktop の ExpMath1 というフォルダの中にあるとします．</p>
-<p><strong>ターミナルを起動し，cdコマンドで作業ディレクトリを異動</strong></p>
-<pre><code class="bash">$ cd ~/Desktop/ExpMath1
-</code></pre>
-
-<p><strong>gccコマンドで，hello.cをコンパイル</strong></p>
-<pre><code class="bash">$ gcc hello.c
-</code></pre>
-
-<p>コンパイルが成功すると，実行ファイル「a.out」が作成されます．lsコマンドで確認してみると</p>
-<pre><code class="bash">$ ls
-a.out hello.c
-</code></pre>
-
-<p>と二つのファイルが表示されるはずです（同じフォルダに他のファイルがあれば，それらも全て表示されます）．生成されるファイルが windows の場合と異なることに注意してください．</p>
-<p><strong>プログラムを実行（windows の場合と異なります）</strong></p>
-<pre><code class="bash">$ ./a.out
-Hello World!
-</code></pre>
-
-<p>「Hello World!」が表示されれば成功です．</p></div>
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/2021ExpMath1-programs/blob/4260cd23db2c9ffac6512c53442eefdaa371b86b/Julia/GramSchmidt.ipynb">こちら</a></p></div>
         
         
     </div>
