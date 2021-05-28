@@ -208,24 +208,21 @@
 <h3 id="julia_1">Julia本体のインストール</h3>
 <h4 id="homebrew">homebrewなどのパッケージ管理システムを使う場合</h4>
 <p>homebrew をすでに使っている場合は，ターミナル上で</p>
-<pre><code class="bash">$ brew install cask julia
+<pre><code class="language-bash">$ brew install cask julia
 </code></pre>
-
 <p>とすればインストールできます．homebrew をインストールするには，<a href="https://brew.sh/index_ja">homebrewのwebページ</a> にアクセスし，「インストール」の下のおまじないのような一行をコピーし（ただし，左端の「$」は除く），macOSのターミナルにペーストしエンターキーを押してください．</p>
 <p>MacPorts などの他のパッケージ管理システムを利用している場合も，同様にインストールできるはずです（宮武は homebrew を使っているため未確認）．</p>
 <h4 id="_3">インストーラーを使う場合</h4>
 <p>Julia を配布している <a href="https://julialang.org/downloads/">Download Julia</a> から，macOS 向けの最新の installer をダウンロードしましょう（<a href="https://julialang.org/downloads/#current_stable_release">Current stable release</a>から macOS の 64-bit をクリックすれば自動でダウンロードが始まります）．ダウンロードできたら，そのファイルを使って他のアプリケーション同様にインストールすれば完了です．</p>
 <p>ターミナルから</p>
-<pre><code class="bash">$ julia
+<pre><code class="language-bash">$ julia
 </code></pre>
-
 <p>で Julia を起動するためには，<a href="https://julialang.org/downloads/platform/#macos">Platform Specific Instructions for Official Binaries</a> にあるコマンドをターミナル上で入力してください．</p>
 <p>ターミナルから</p>
-<pre><code class="bash">$ julia
+<pre><code class="language-bash">$ julia
 </code></pre>
-
 <p>で Julia を起動すると，次のような画面が表示されます（表示されれば成功です）．<code>Version 1.5.3 (2020-11-09)</code> の部分は，いつどのようにJuliaをインストールしたかによって異なるのであまり気にする必要はないでしょう．</p>
-<pre><code class="julia">               _
+<pre><code class="language-julia">               _
    _       _ _(_)_     |  Documentation: https://docs.julialang.org
   (_)     | (_) (_)    |
    _ _   _| |_  __ _   |  Type &quot;?&quot; for help, &quot;]?&quot; for Pkg help.
