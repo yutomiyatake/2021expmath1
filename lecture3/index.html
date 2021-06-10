@@ -148,6 +148,12 @@
 </li>
 
                         
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
                         </ul>
                     </li>
                 
@@ -219,7 +225,7 @@
 <h2 id="julia_2">Juliaのインターフェース</h2>
 <p>Juliaには幾つかの使い方があります（<a href="http://www.cas.cmc.osaka-u.ac.jp/~paoon/Lectures/2020-8Semester-NA-basic/01-guide-of-julia/">降籏先生の解説</a>も一読することをおすすめします）．</p>
 <p>まず，Juliaを起動すると以下のような画面がでてきますが，これを対話型セッション（REPL (read-eval-print loop)）といいます．今回の講義のページはREPLでJuliaを体験することを想定しています．</p>
-<pre><code class="language-julia">               _
+<pre><code class="julia">               _
    _       _ _(_)_     |  Documentation: https://docs.julialang.org
   (_)     | (_) (_)    |
    _ _   _| |_  __ _   |  Type &quot;?&quot; for help, &quot;]?&quot; for Pkg help.
@@ -231,15 +237,17 @@
 julia&gt; 
 
 </code></pre>
+
 <p>次に，（この講義ではほとんど扱うことはないと思いますが）Juliaのプログラムを書いたファイル hoge.jl （Juliaのプログラムの拡張子は jl です）を cygwin や ターミナル から</p>
-<pre><code class="language-bash">$ julia hoge.jl
+<pre><code class="bash">$ julia hoge.jl
 </code></pre>
+
 <p>と実行する方法があります．</p>
 <p>3つ目は，Jupyterというインターフェースを用いるものです．<a href="../lecture4">次のページ</a>で詳しく解説しますが，webブラウザ上でプログラミングをし，実行結果もwebブラウザ上に表示されるようなインターフェースです．（この講義で扱うような内容に関しては）上の二つの使い方よりもかなり便利に使うことができます（基本的に上の二つでも同じことはできますが使い勝手がかなり違います）．</p>
 <p>他にも，直近では <a href="https://github.com/fonsp/Pluto.jl">Pluto</a> といったインターフェースも登場しているようです．</p>
 <h2 id="_1">文字列などの出力</h2>
 <p>文字列などを出力したいときには，<code>print</code>, <code>println</code>, <code>@printf</code> などを使います．</p>
-<pre><code class="language-julia">julia&gt; print(&quot;ab&quot;) # 改行無し出力
+<pre><code class="julia">julia&gt; print(&quot;ab&quot;) # 改行無し出力
 ab
 julia&gt; print(&quot;ab\n&quot;) # \n は改行
 ab
@@ -279,30 +287,35 @@ julia&gt; @printf(&quot;pi = %.8f\n&quot;, pi)
 pi = 3.14159265
 
 </code></pre>
+
 <p>関数の使い方を詳しく知りたい時，<a href="https://docs.julialang.org/en/v1/">公式のドキュメント</a> で調べたり，<code>Julia println</code> のようなキーワードでweb検索するのも良いですが，より手軽な次のような方法があります．</p>
-<pre><code class="language-julia">julia&gt; 
+<pre><code class="julia">julia&gt; 
 </code></pre>
+
 <p>この状態で <code>?</code> を押すと</p>
-<pre><code class="language-julia">help?&gt; 
+<pre><code class="julia">help?&gt; 
 </code></pre>
+
 <p>となります．</p>
 <p>ここで，例えば，<code>@printf</code> と書いてエンターキーを押すと</p>
-<pre><code class="language-julia">help?&gt; @printf
+<pre><code class="julia">help?&gt; @printf
   @printf([io::IOStream], &quot;%Fmt&quot;, args...)
 
   Print args using C printf style format specification string, with some
   ...
 </code></pre>
+
 <p>のように，その関数の使い方が表示されます．ただし，<code>println</code> のようにパッケージ無しで使える関数はいつでも調べることができますが，<code>@printf</code> のように，Printf というパッケージが必要なものの場合，<code>using Printf</code> をせずに（すなわち，パッケージを読み込まずに）<code>?</code> をすると，</p>
-<pre><code class="language-julia">help?&gt; @printf
+<pre><code class="julia">help?&gt; @printf
   No documentation found.
 
   Binding @printf does not exist.
 </code></pre>
+
 <p>のようになるので注意しましょう．</p>
 <h2 id="if">if文</h2>
 <p>公式ドキュメントの例でみてみましょう．考え方はC言語のときと同じですが，文法だけがやや異なります．</p>
-<pre><code class="language-julia">(x,y) = (2,3)
+<pre><code class="julia">(x,y) = (2,3)
 if x &lt; y
   println(&quot;x is less than y&quot;)
 elseif x &gt; y
@@ -311,47 +324,55 @@ else
   println(&quot;x is equal to y&quot;)
 end
 </code></pre>
+
 <p>これを実行すれば，</p>
-<pre><code class="language-julia">x is less than y
+<pre><code class="julia">x is less than y
 </code></pre>
+
 <p>となります．x と y の値を変えて（大小関係や整数以外）試してみましょう．</p>
 <h2 id="forwhile">for文とwhile文</h2>
 <p>まず，for文 の例をみてみましょう．</p>
-<pre><code class="language-julia">for i = 1:4
+<pre><code class="julia">for i = 1:4
   print(&quot;i = $i, &quot;)
 end
 </code></pre>
+
 <p>とすると出力は</p>
-<pre><code class="language-julia">i = 1, i = 2, i = 3, i = 4,
+<pre><code class="julia">i = 1, i = 2, i = 3, i = 4,
 </code></pre>
+
 <p>となります．</p>
 <p>また，</p>
-<pre><code class="language-julia">for i in [1,4,0]
+<pre><code class="julia">for i in [1,4,0]
   print(&quot;i = $i, &quot;)
 end
 </code></pre>
+
 <p>このような書き方をすれば出力は</p>
-<pre><code class="language-julia">i = 1, i = 4, i = 0, 
+<pre><code class="julia">i = 1, i = 4, i = 0, 
 </code></pre>
+
 <p>となります．</p>
 <p>次に while文 の例をみてみましょう．</p>
-<pre><code class="language-Julia">i = 1;
+<pre><code class="Julia">i = 1;
 while i &lt; 5
   println(i)
   i += 1
 end
 </code></pre>
+
 <p>これを実行すると出力は</p>
-<pre><code class="language-julia">1
+<pre><code class="julia">1
 2
 3
 4
 
 </code></pre>
+
 <p>となります．</p>
 <h2 id="_2">関数</h2>
 <p>例えば，1 から n までの総和を計算する関数 <code>sum</code> は</p>
-<pre><code class="language-julia">function sum(n)
+<pre><code class="julia">function sum(n)
   x = 0
   for i = 1:n
     x += i
@@ -359,6 +380,7 @@ end
   return x
 end
 </code></pre>
+
 <p>のように書きます．使うときは <code>sum(10)</code> のようにすればよいです．</p>
 <p>C言語のときとは異なり，引数や戻り値の <strong>型を指定していない</strong> ことに注意してください．実は，<strong>型を指定することもできる</strong> のですが（その方が好ましいこともあります），このように，型を意識せずにプログラムを書けることが，Juliaの手軽さの一つといえます．型の指定の仕方については，Juliaに慣れてきた頃に説明します．</p>
 <div class="bs-callout bs-callout-default">
@@ -368,7 +390,7 @@ end
 
 <h2 id="_3">数学関数</h2>
 <p>標準的な数学関数を利用するために，何らかのパッケージを読み込む必要はありません．</p>
-<pre><code class="language-julia"># 例
+<pre><code class="julia"># 例
 julia&gt; exp(1)
 2.718281828459045
 
@@ -376,10 +398,11 @@ julia&gt; sin(pi/2)
 1.0
 
 </code></pre>
+
 <p>ただし，線形代数の演算（例えば内積）などは，例えば <strong>LinearAlgebra</strong> といったパッケージを必要とします．これについては，必要になった時点で解説します．</p>
 <h2 id="_4">再帰関数</h2>
 <p>Jilia でも再帰関数を定義できます．階乗の計算を行う fact 関数を再帰的に定義する場合，</p>
-<pre><code class="language-Julia">function fact(n)
+<pre><code class="Julia">function fact(n)
   if n == 0
     return 1
   else
@@ -387,8 +410,9 @@ julia&gt; sin(pi/2)
   end
 end
 </code></pre>
+
 <p>のように書きます．なお，julia にはデフォルトで <code>factorial</code> という関数が準備されています．この関数の定義の仕方が知りたいときは，<a href="https://docs.julialang.org/en/v1/base/math/#Base.factorial">公式のドキュメント</a> の factorial の欄の右下にある source をクリックすることで確認できます．どうやら</p>
-<pre><code class="language-julia">function factorial(n::Integer)
+<pre><code class="julia">function factorial(n::Integer)
     n &lt; 0 &amp;&amp; throw(DomainError(n, &quot;`n` must be nonnegative.&quot;))
     f::typeof(n*n) = 1
     for i::typeof(n*n) = 2:n
@@ -397,44 +421,50 @@ end
     return f
 end
 </code></pre>
+
 <p>のように定義されているようです．for文 を使って定義されていますね．このように，組み込み関数（デフォルトで準備されている関数）の定義をみると勉強になることも多いです（プロが書いたものなので当然です）．この factorial の例でも，例えば引数の型を整数型としたいときは <code>n::Integer</code> とすればよいことが分かります．</p>
 <p>実は，上記の fact 関数 の定義は一行で</p>
-<pre><code class="language-julia">fact1(n) = n == 0 ? 1 : n * fact1(n - 1)
+<pre><code class="julia">fact1(n) = n == 0 ? 1 : n * fact1(n - 1)
 </code></pre>
+
 <p>と書くことができます．<code>fact1(n) = ...</code> の <code>...</code> の部分が関数の定義になっていることはイメージしやすいと思います．一方で，初見だと <code>...</code> の部分が意味不明ではないでしょうか？　実は，<code>a ? b : c</code> というのは，</p>
-<pre><code class="language-julia">if a 
+<pre><code class="julia">if a 
     b
 else
     c
 end
 </code></pre>
+
 <p>という意味です．実際に調べてみると，以下のように説明されています．</p>
-<pre><code class="language-Julia">help?&gt; ?
+<pre><code class="Julia">help?&gt; ?
 search: ? ?:
 
   a ? b : c
 
   Short form for conditionals; read &quot;if a, evaluate b otherwise evaluate c&quot;.
 </code></pre>
+
 <h2 id="_5">配列</h2>
 <p>ベクトルや行列（さらにはテンソル）を扱うときには<strong>配列</strong>を利用します．縦ベクトルが一次元配列，行列が二次元配列に対応します．今の段階であまり気にする必要はありませんが，配列の要素は全て同じ型になります．</p>
 <p>例を見てみましょう．</p>
-<pre><code class="language-Julia">julia&gt; x = [1,2,3]
+<pre><code class="Julia">julia&gt; x = [1,2,3]
 3-element Array{Int64,1}:
  1
  2
  3
 </code></pre>
+
 <p>このように，[ ] で囲んで，カンマで区切れば，一次元配列（= 縦ベクトル）になります．</p>
-<pre><code class="language-julia">julia&gt; x = [1;2;3]
+<pre><code class="julia">julia&gt; x = [1;2;3]
 3-element Array{Int64,1}:
  1
  2
  3
 </code></pre>
+
 <p>このようにセミコロンで区切っても同じ結果になります．</p>
 <p>二次元配列（= 行列）は次のようにすればよいです．</p>
-<pre><code class="language-julia">julia&gt; A = [1 2 3;
+<pre><code class="julia">julia&gt; A = [1 2 3;
             4 5 6;
             7 8 9]
 3×3 Array{Int64,2}:
@@ -442,8 +472,9 @@ search: ? ?:
  4  5  6
  7  8  9
 </code></pre>
+
 <p>ここで，配列の要素は整数型です．なお，一つでも実数型にすると，例えば次のようになります．</p>
-<pre><code class="language-julia">julia&gt; A = [1.0 2 3;
+<pre><code class="julia">julia&gt; A = [1.0 2 3;
             4 5 6;
             7 8 9]
 3×3 Array{Float64,2}:
@@ -451,15 +482,17 @@ search: ? ?:
  4.0  5.0  6.0
  7.0  8.0  9.0
 </code></pre>
+
 <p>行列のベクトルの掛け算には次のように <code>*</code> を使います．</p>
-<pre><code class="language-julia">julia&gt; A * x
+<pre><code class="julia">julia&gt; A * x
 3-element Array{Int64,1}:
  14
  32
  50
 </code></pre>
+
 <p>以下，幾つか重要な例を見てみましょう．</p>
-<pre><code class="language-julia"># 全ての値が0の配列
+<pre><code class="julia"># 全ての値が0の配列
 julia&gt; zeros(2) # デフォルトはFloat64型
 2-element Array{Float64,1}:
  0.0
@@ -503,8 +536,9 @@ julia&gt; randn(2,3)
  2.35716   1.44751   0.813044
  1.49665  -0.677559  0.467396
 </code></pre>
+
 <p>配列の要素は，<code>A[i,j]</code> のように取り出します．代入も同様です．</p>
-<pre><code class="language-julia">julia&gt; A = rand(2,3)
+<pre><code class="julia">julia&gt; A = rand(2,3)
 2×3 Array{Float64,2}:
  0.718872  0.349552   0.10818
  0.13624   0.0399332  0.241702
@@ -521,12 +555,13 @@ julia&gt; A
  0.718872  1.0        0.10818
  0.13624   0.0399332  0.241702
 </code></pre>
+
 <p>Juliaでは，配列のインデックスは 1 からはじまります．C言語など，他の幾つかの言語では，配列のインデックスは 0 からはじまるので，そのような言語に慣れている方にとっては，少し違和感を覚えるかもしれませんが，「Juliaではそういうルールなのだ」と思えば良いでしょう．</p>
 <h2 id="-">行列-ベクトル積</h2>
 <p>行列とベクトルの掛け算は，<code>A * x</code> のように簡単に書けるわけですが，もう少し注意深く考えてみましょう．\(A\in\mathbb{R}^{m\times n}\) と ベクトル \(x\in\mathbb{R}^{n}\) に対して，それらの積 \(Ax\) の第 \(i\) 成分は，
 $$ \sum_{j=1}^n a_{ij} x_j$$
 ですから，\(y = Ax\) を計算したければ，</p>
-<pre><code class="language-julia">julia&gt; A = randn(3,2)
+<pre><code class="julia">julia&gt; A = randn(3,2)
 3×2 Array{Float64,2}:
  -0.0770241  -0.0941118
   2.37894     0.198019
@@ -545,22 +580,25 @@ julia&gt; for i = 1:3
            end
        end
 </code></pre>
+
 <p>とすればよさそうです．このとき，結果は</p>
-<pre><code class="language-Julia">julia&gt; y
+<pre><code class="Julia">julia&gt; y
 3-element Array{Float64,1}:
   0.1314095002691501
  -1.1389493877360208
  -1.5289372130207397
 </code></pre>
+
 <p>となり，<code>A * x</code> の結果</p>
-<pre><code class="language-julia">julia&gt; A * x
+<pre><code class="julia">julia&gt; A * x
 3-element Array{Float64,1}:
   0.1314095002691501
  -1.1389493877360208
  -1.5289372130207397
 </code></pre>
+
 <p>と確かに一致します．もっとも，二重になっている for文 の順番を入れ替えて</p>
-<pre><code class="language-julia">julia&gt; z = zeros(3)
+<pre><code class="julia">julia&gt; z = zeros(3)
 3-element Array{Float64,1}:
  0.0
  0.0
@@ -572,23 +610,26 @@ julia&gt; for j = 1:2
            end
        end
 </code></pre>
+
 <p>としても，やはり結果は</p>
-<pre><code class="language-julia">julia&gt; z
+<pre><code class="julia">julia&gt; z
 3-element Array{Float64,1}:
   0.1314095002691501
  -1.1389493877360208
  -1.5289372130207397
 </code></pre>
+
 <p>となります．「数学的には同じなのだから当たり前ではないか！」と思われるかもしれませんが，実はちょっとした違いがあります．</p>
 <p>簡単のために \(A\) は正方行列として，そのサイズを \(n=10000\) としましょう．行列 \(A\) とベクトル \(x\) を次のように初期化しておきます．</p>
-<pre><code class="language-julia">julia&gt; n = 10000;
+<pre><code class="julia">julia&gt; n = 10000;
 
 julia&gt; A = randn(n,n);
 
 julia&gt; x = ones(n);
 </code></pre>
+
 <p>そして，行列ベクトル積を計算する関数を2つ準備しましょう．</p>
-<pre><code class="language-julia">julia&gt; function matvec1(A,x)
+<pre><code class="julia">julia&gt; function matvec1(A,x)
            n = length(x)
            y = zeros(n)
            for i = 1:n
@@ -612,17 +653,20 @@ julia&gt; function matvec2(A,x)
        end
 matvec2 (generic function with 1 method)
 </code></pre>
+
 <p>違いは，for文 の順番だけです．これらの関数を使って，行列ベクトル積を計算するときの実行時間を測ってみましょう．そのためには，<code>@time</code> というコマンドを使います．以下の結果は，実行する環境によって異なりますが，私のラップトップでは次のようになりました．（実行する度に計算時間は異なるはずですが，「1回目」は極端に遅い可能性があるので，2回目以降（何回やってもだいたい同じ）で比較してみるとよいでしょう）</p>
-<pre><code class="language-julia">julia&gt; @time matvec1(A,x);
+<pre><code class="julia">julia&gt; @time matvec1(A,x);
   0.773708 seconds (2 allocations: 78.203 KiB)
 
 julia&gt; @time matvec2(A,x);
   0.105140 seconds (2 allocations: 78.203 KiB)
 </code></pre>
+
 <p>外側に j のループがある <code>matvec2</code> の方が圧倒的に速いですね．なお，<code>*</code> を使えば</p>
-<pre><code class="language-julia">julia&gt; @time A * x;
+<pre><code class="julia">julia&gt; @time A * x;
   0.019867 seconds (2 allocations: 78.203 KiB)
 </code></pre>
+
 <p>のようにより高速です．<code>matvec1</code> と <code>matvec2</code> の違いは，配列の要素の格納の違いからきています．例えば，JuliaとC言語では \(5\times 5\) の配列の要素はそれぞれ次の順で格納されています．</p>
 <p><img src="../img/matrix.png"></p>
 <p><code>matvec1</code> では，1, 6, 11, 16, 21, ... の順で飛び飛びにアクセスしているため，計算の時間も長くかかってしまっています．それに対して，<code>matvec2</code> では，1, 2, 3, 4, 5, 6, ... という素直な順でアクセスしているため相対的に高速に計算ができているのです（同様な理由で，C言語の場合は，<code>matvec1</code> のような書き方の方が高速に計算できます）．</p></div>
