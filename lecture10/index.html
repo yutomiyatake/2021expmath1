@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
-    <title>Jupyterの導入 - 実験数学1</title>
+    <title>常微分方程式2 - 実験数学1</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -125,8 +125,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Jupyterの導入</a>
+<li >
+    <a href="../lecture4/">Jupyterの導入</a>
 </li>
 
                         
@@ -161,8 +161,8 @@
 
                         
                             
-<li >
-    <a href="../lecture10/">常微分方程式2</a>
+<li class="active">
+    <a href="./">常微分方程式2</a>
 </li>
 
                         
@@ -179,12 +179,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../lecture3/">
+                        <a rel="prev" href="../lecture9/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="next" href="../lecture5/">
+                    <li class="disabled">
+                        <a rel="next" >
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -198,45 +198,50 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#jupyter">Jupyterのインストール</a></li>
+        <li class="first-level active"><a href="#2">常微分方程式の数値解法2</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="jupyter">Jupyterのインストール</h1>
-<p>Juliaの利用の仕方は色々ありますが，<a href="https://jupyter.org/index.html">Jupyter</a>というものを使うことがよくあります．この講義でもJupyterを使って学習を進めていきます．Jupyterとは何かを説明するよりも，習うより慣れろ，の精神でさっそく導入してみましょう．なお，コンピュータやプログラミングに詳しい学生は，Jupyterの<a href="https://jupyter.org/install">webページ</a>を参考にJupyterLabをインストールするのもよいでしょう．</p>
-<p>Juliaを起動し，</p>
-<pre><code class="language-julia">julia&gt; 
-</code></pre>
-<p>の状態で <code>]</code> を一回押すと</p>
-<pre><code class="language-julia">(@v1.6) pkg&gt; 
-</code></pre>
-<p>となると思います（バックスペースを押すと元に戻ります）ここで，</p>
-<pre><code class="language-julia">(@v1.6) pkg&gt; add IJulia
-</code></pre>
-<p>としてエンターキーを押しましょう（その後しばらく待ちます）．そして，</p>
-<pre><code class="language-julia">julia&gt; 
-</code></pre>
-<p>に戻り，</p>
-<pre><code class="language-julia">julia&gt; using IJulia
-</code></pre>
-<p>としてエンターキーを押しましょう（少し待ちます）．そして</p>
-<pre><code class="language-julia">julia&gt; notebook()
-</code></pre>
-<p>とすると，おそらくは</p>
-<pre><code class="language-julia">julia&gt; notebook()
-install Jupyter via Conda, y/n? [y]:
-</code></pre>
-<p>と表示されるので，y を押してエンターキーを押します．すると既定のブラウザ（もしくはどのブラウザで開くか聞かれたときは好きなものを選択）で次のようなページが開きます．<br><img src="../img/jupyter1.png" alt="jupyter1" width=60%></p>
-<p>ここで，右上の 新規 (もしくは New) をクリックすると<br><img src="../img/jupyter2.png" alt="jupyter2" width=60%></p>
-<p>のようになると思います．おそらく皆さんの環境では「Julia 1.6.0」と「Python 3」が表示されていると思います．左にApplicationsやDesktopといった項目がありますが（環境によって何が表示されるかは異なります），ここをクリックしていけば所望のフォルダにたどり着けるでしょう．例えば，Desktopにあるtestというフォルダに移動してみると（そのフォルダが空ならば）次のようになります.</p>
-<p><br><img src="../img/jupyter3.png" alt="jupyter3" width=60%></p>
-<p>ここで，「新規」から「Julia 1.6.0」をクリックすると，次のようなページが別ウィンドウで開きます．<br><img src="../img/jupyter4.png" alt="jupyter4" width=60%></p>
-<p>これは，<code>1+1</code> と書いてエンターキーを押したところの画面です．一番上の Untitled がファイルの名前になっていて，クリックすれば修正可能です．<br><img src="../img/jupyter5.png" alt="jupyter5" width=60%></p>
-<p>ここで，1つ目のページに戻ると，確かに，Test.ipynb というファイルが生成されていることが分かります．</p>
-<p><img src="../img/jupyter6.png" alt="jupyter6" width=60%></p>
-<p>ipynbはJupyterを使うときの拡張子です．また，この画面でTest.ipynbをクリックすればさきほどの画面が開きます．</p>
-<p>さて，<a href="https://github.com/yutomiyatake/2021ExpMath1-programs/blob/210189ad1a429bbbbf78f92ebef65e37179aab8d/Julia/Sample.ipynb">サンプルファイル</a>を用意してみました．Rawから，名前を付けて保存をクリックすればSample.ipynbというファイルをダウンロードできるはずです．ダウンロードできたらJupyterで実行してみましょう．</p></div>
+<h1 id="2">常微分方程式の数値解法2</h1>
+<p>今回の講義は常微分方程式の数値解法のベクトル編です（従属変数がスカラーではない場合です；すなわち，前回の記号でいえば，\(d\) が \(2\) 以上の場合です）．</p>
+<p>例題として，\(d=2\) の場合の次の微分方程式を考えましょう：
+\begin{equation}
+    \frac{\mathrm d}{\mathrm dt} \begin{bmatrix} q \cr p \end{bmatrix}= \begin{bmatrix} p \cr -q\end{bmatrix}, \quad \begin{bmatrix} q(0) \cr p(0) \end{bmatrix} = \begin{bmatrix} 1 \cr 0 \end{bmatrix} .
+\end{equation}
+前回の表記との対応は \(y = [q,p]^\top\) です．
+この方程式は，調和振動子という微分方程式の特殊ケースで，厳密解は
+\begin{equation}
+    \begin{bmatrix}
+        q(t) \cr p(t)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \cos (t) \cr -\sin(t)
+    \end{bmatrix} <br />
+\end{equation}
+です．すなわち，\((q,p)\)-平面において単位円を時計回りに運動します．</p>
+<p>今回は，前回の陽的Euler法とRunge-Kutta法に加えて，symplectic Euler法とよばれる解法を実装してみましょう．
+Symplectic Euler法とは次のような解法です：
+\begin{align}
+    q_1 &amp;= q_0 + h p_0, \cr
+    p_1 &amp;= p_0 - h q_1. 
+\end{align}
+\( p\) についての更新式の右辺の \( q_1\) がもし \(q_0 \) であれば陽的Euler法と一致します（ここだけが陽的Euler法と異なります）．
+なお，一般には
+\begin{align}
+    q_{n+1} &amp;= q_{n} + h p_{n}, \cr
+    p_{n+1} &amp;= p_{n} - h q_{n+1}
+\end{align}
+です．</p>
+<p>では，プログラムを見て課題を行っていきましょう．</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    サンプルプログラムの中のsymplectic Euler法の関数を完成させ，CLEで提出してください．
+    CLEで提出する際は，「テキスト情報の入力」欄に，自分で書いた関数の部分をコピーし，さらに，必要に応じて（添付した）図を参照しながら陽的Euler法との違いについての考察を書き，「ファイルの添付」から「ipynb ファイル」（名前は，ODE2_miyatake.ipynb のように自分の名前を入れてください）を添付してください．
+</div>
+
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/2021ExpMath1-programs/blob/ece4c942356e5ee9d778e5f287345e4e1c4668f2/Julia/ODE2.ipynb">こちら</a></p></div>
         
         
     </div>
