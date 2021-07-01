@@ -166,6 +166,12 @@
 </li>
 
                         
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
                         </ul>
                     </li>
                 
@@ -206,27 +212,34 @@
 <h1 id="jupyter">Jupyterのインストール</h1>
 <p>Juliaの利用の仕方は色々ありますが，<a href="https://jupyter.org/index.html">Jupyter</a>というものを使うことがよくあります．この講義でもJupyterを使って学習を進めていきます．Jupyterとは何かを説明するよりも，習うより慣れろ，の精神でさっそく導入してみましょう．なお，コンピュータやプログラミングに詳しい学生は，Jupyterの<a href="https://jupyter.org/install">webページ</a>を参考にJupyterLabをインストールするのもよいでしょう．</p>
 <p>Juliaを起動し，</p>
-<pre><code class="language-julia">julia&gt; 
+<pre><code class="julia">julia&gt; 
 </code></pre>
+
 <p>の状態で <code>]</code> を一回押すと</p>
-<pre><code class="language-julia">(@v1.6) pkg&gt; 
+<pre><code class="julia">(@v1.6) pkg&gt; 
 </code></pre>
+
 <p>となると思います（バックスペースを押すと元に戻ります）ここで，</p>
-<pre><code class="language-julia">(@v1.6) pkg&gt; add IJulia
+<pre><code class="julia">(@v1.6) pkg&gt; add IJulia
 </code></pre>
+
 <p>としてエンターキーを押しましょう（その後しばらく待ちます）．そして，</p>
-<pre><code class="language-julia">julia&gt; 
+<pre><code class="julia">julia&gt; 
 </code></pre>
+
 <p>に戻り，</p>
-<pre><code class="language-julia">julia&gt; using IJulia
+<pre><code class="julia">julia&gt; using IJulia
 </code></pre>
+
 <p>としてエンターキーを押しましょう（少し待ちます）．そして</p>
-<pre><code class="language-julia">julia&gt; notebook()
+<pre><code class="julia">julia&gt; notebook()
 </code></pre>
+
 <p>とすると，おそらくは</p>
-<pre><code class="language-julia">julia&gt; notebook()
+<pre><code class="julia">julia&gt; notebook()
 install Jupyter via Conda, y/n? [y]:
 </code></pre>
+
 <p>と表示されるので，y を押してエンターキーを押します．すると既定のブラウザ（もしくはどのブラウザで開くか聞かれたときは好きなものを選択）で次のようなページが開きます．<br><img src="../img/jupyter1.png" alt="jupyter1" width=60%></p>
 <p>ここで，右上の 新規 (もしくは New) をクリックすると<br><img src="../img/jupyter2.png" alt="jupyter2" width=60%></p>
 <p>のようになると思います．おそらく皆さんの環境では「Julia 1.6.0」と「Python 3」が表示されていると思います．左にApplicationsやDesktopといった項目がありますが（環境によって何が表示されるかは異なります），ここをクリックしていけば所望のフォルダにたどり着けるでしょう．例えば，Desktopにあるtestというフォルダに移動してみると（そのフォルダが空ならば）次のようになります.</p>

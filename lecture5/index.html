@@ -166,6 +166,12 @@
 </li>
 
                         
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
                         </ul>
                     </li>
                 
@@ -213,7 +219,7 @@
 <p>今後の授業では，関数と配列が非常に重要ですので，これらについて幾つか注意を述べておきます．</p>
 <h2 id="_1">関数：キーワード引数</h2>
 <p>関数を定義する際，キーワード引数は，引数の指定を位置ではなく名前でおこないます．また，デフォルトの値を設定しておきたいとき（例えば，最大反復回数や許容誤差）にも便利です．</p>
-<pre><code class="language-julia">julia&gt; function f(x;y=1)
+<pre><code class="julia">julia&gt; function f(x;y=1)
        return x+y
        end
 f (generic function with 1 method)
@@ -224,8 +230,9 @@ julia&gt; f(2)
 julia&gt; f(2,y=0.1)
 2.1
 </code></pre>
+
 <p>型を指定することもできます．</p>
-<pre><code class="language-julia">julia&gt; function g(x;y::Int64=1)
+<pre><code class="julia">julia&gt; function g(x;y::Int64=1)
        return x+y
        end
 g (generic function with 1 method)
@@ -239,9 +246,10 @@ Stacktrace:
  [1] (::getfield(Main, Symbol(&quot;#kw##g&quot;)))(::NamedTuple{(:y,),Tuple{Float64}}, ::typeof(g), ::Int64) at ./none:0
  [2] top-level scope at REPL[15]:1
 </code></pre>
+
 <p><code>Int64</code> は 64-bit signed integer type なので，このように小数を代入をしようとするとエラーが起きます．型についての詳細は，<a href="https://docs.julialang.org/en/v1/manual/types/">公式ドキュメント</a> を参照するとよいでしょう．</p>
 <p>また，キーワード引数が二つ以上ある場合，どの順番で指定しても問題ありません．</p>
-<pre><code class="language-julia">julia&gt; function h(x;y=1,z=2)
+<pre><code class="julia">julia&gt; function h(x;y=1,z=2)
        return x*y+z
        end
 h (generic function with 1 method)
@@ -252,9 +260,10 @@ julia&gt; h(1,z=3)
 julia&gt; h(1,z=3,y=2)
 5
 </code></pre>
+
 <h2 id="_2">関数：複数の戻り値の名前付きタプル化</h2>
 <p>複数の戻り値を持つ関数の定義についてです．たとえば，次のような定義と取り出し方が標準的だと思います．</p>
-<pre><code class="language-julia">julia&gt; function f(x,y)
+<pre><code class="julia">julia&gt; function f(x,y)
            return x, [x,y], x+y
        end
 f (generic function with 1 method)
@@ -282,8 +291,9 @@ julia&gt; b
  2
  3
 </code></pre>
+
 <p>一方で，次のように戻り値のタプルの要素に名前をつけて定義することもできます．</p>
-<pre><code class="language-julia">julia&gt; function f(x,y)
+<pre><code class="julia">julia&gt; function f(x,y)
            return (p = x, P = [x,y], q = x+y)
        end
 f (generic function with 1 method)
@@ -338,6 +348,7 @@ julia&gt; m
  4
  5
 </code></pre>
+
 <h2 id="_3">配列：参照渡し と 値渡し</h2>
 <p>Juliaでプログラムを書く際，<strong>参照渡し</strong>に注意が必要です．Juliaはmatlabと同様の感覚でプログラムを書けますが，matlabのデフォルトは<strong>値渡し</strong>なのでmatlabに慣れている場合は特に注意が必要です．</p>
 <p>まず，値渡しの例：</p>
@@ -353,6 +364,7 @@ julia&gt; b +=2
 julia&gt; a
 1
 </code></pre>
+
 <p>要するに，bの値は変わってもaの値は変わりません．</p>
 <p>次に参照渡しの例：</p>
 <pre><code>julia&gt; a = [1,2]
@@ -378,11 +390,13 @@ julia&gt; a
  2
  2
 </code></pre>
+
 <p>この場合，参照渡しとなりaの値も変更されます．これを避けたければ例えば</p>
 <pre><code>julia&gt; b = a[:]
 
 julia&gt; b = copy(a)
 </code></pre>
+
 <p>のようにすればよいです．</p></div>
         
         
