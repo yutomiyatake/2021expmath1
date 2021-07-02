@@ -272,18 +272,18 @@
 <p>分解 \eqref{eq:svd} を <strong>特異値分解</strong> (singular value decomposition; SVD) といいます．</p>
 <p>この定理の証明は，少し発展的な線形代数の教科書を参照していただくことにして，直ちに分かる固有値との関係について紹介します．上の定理を認めると
 \begin{align}
-A^\top A &amp;= (U\Sigma V)^\top (U\Sigma V) = V \Sigma^\top \Sigma V^\top, \cr
+A^\top A &amp;= (U\Sigma V)^\top (U\Sigma V) = V^\top \Sigma^\top \Sigma V, \cr
 A A^\top &amp;= (U\Sigma V) (U\Sigma V)^\top = U \Sigma \Sigma ^\top U^\top
 \end{align}
 となりますから（\(\Sigma^\top \Sigma \) や \(\Sigma \Sigma^\top \) は対角行列であることに注意），</p>
 <ul>
-<li>\(A\) の特異値は，\(A^\top A\) の非零固有値の平方根と一致し，\(V\) の列ベクトルは \(A^\top A\) の固有ベクトル</li>
+<li>\(A\) の特異値は，\(A^\top A\) の非零固有値の平方根と一致し，\(V\) の行ベクトルは \(A^\top A\) の固有ベクトル</li>
 <li>\(A\) の特異値は，\(A A^\top \) の非零固有値の平方根と一致し，\(U\) の列ベクトルは \(A A^\top\) の固有ベクトル</li>
 </ul>
 <p>であることが分かります．</p>
 <p>さて，直交行列 \(U\) と \(V\) を
 \begin{equation}
-U = [u_1, \dots, u_m], \quad V = [v_1,\dots, v_n]
+U = [u_1, \dots, u_m], \quad V = [v_1,\dots, v_n]^\top
 \end{equation}
 と表すことにすれば（例えば \(u_i\) は \(U\) の第 \(i\) 列のベクトル），\eqref{eq:svd} は
 \begin{equation}
